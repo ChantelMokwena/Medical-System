@@ -10,4 +10,4 @@ class DoctorSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Doctor
-        fields = ['id', 'user', 'specialisation', 'license_number', 'years_of_experience', 'consultation_fee']
+        fields = ['id', 'user', 'specialization', 'license_number', 'years_of_experience', 'consultation_fee']
