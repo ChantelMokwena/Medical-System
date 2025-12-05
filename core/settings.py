@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # Third-party apps
     'rest_framework',
     'rest_framework_simplejwt',
+    'drf_spectacular',
     
     # Your apps
     'accounts',
@@ -137,6 +138,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
     ),
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
 # JWT Settings
@@ -151,3 +153,10 @@ SIMPLE_JWT = {
 
 # Custom User Model
 AUTH_USER_MODEL = 'accounts.User'
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Medical Management System API',
+    'DESCRIPTION': 'Complete REST API for healthcare patient portal with appointments, prescriptions, and secure messaging',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+}
