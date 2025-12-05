@@ -1,5 +1,7 @@
 from django.db import models
+
 from accounts.models import User
+
 
 class Patient(models.Model):
     BLOOD_TYPE_CHOICES = (
@@ -18,3 +20,22 @@ class Patient(models.Model):
     
     def __str__(self):
         return f"Patient: {self.user.username}"
+
+class MedicalCondition(models.Model):
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name='conditions')
+    condition_name = models.CharField(max_length=200)
+    diagnosed_date = models.DateField(null=True, blank=True)
+    severity = models.CharField(max_length=50, choices=[
+        ('mild', 'Mild'),
+        ('moderate', 'Moderate'),
+        ('severe', 'Severe'),
+    ], default='moderate')
+    notes = models.TextField(blank=True, null=True)
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return f"{self.patient.user.username} - {self.condition_name}"
+    
+    class Meta:
+        ordering = ['-created_at']
