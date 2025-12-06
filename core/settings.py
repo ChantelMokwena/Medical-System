@@ -160,3 +160,6 @@ SPECTACULAR_SETTINGS = {
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
 }
+
+CRYPTOGRAPHY_KEY = 'your-secret-encryption-key-change-in-production'
+CRYPTOGRAPHY_SALT = 'your-salt-value'
