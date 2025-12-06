@@ -3,7 +3,8 @@ from rest_framework.decorators import action
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
-
+from .models import User, AuditLog
+from .serializers import UserSerializer, UserRegistrationSerializer, AuditLogSerializer
 from .models import User
 from .serializers import UserRegistrationSerializer, UserSerializer
 
@@ -40,3 +41,14 @@ class UserViewSet(viewsets.ModelViewSet):
     def me(self, request):
         serializer = UserSerializer(request.user)
         return Response(serializer.data)
+
+class AuditLogViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = AuditLog.objects.all()
+    serializer_class = AuditLogSerializer
+    permission_classes = [IsAuthenticated]
+    
+    def get_queryset(self):
+        user = self.request.user
+        if user.user_type == 'admin':
+            return AuditLog.objects.all()
+        return AuditLog.objects.filter(user=user)
