@@ -1,5 +1,5 @@
 from rest_framework import serializers
-
+from .models import User, AuditLog
 from .models import User
 
 
@@ -27,3 +27,11 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
             last_name=validated_data.get('last_name', '')
         )
         return user
+
+class AuditLogSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True)
+    
+    class Meta:
+        model = AuditLog
+        fields = ['id', 'user', 'action', 'model_name', 'object_id', 'changes', 'ip_address', 'timestamp']
+        read_only_fields = fields

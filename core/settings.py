@@ -60,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'core.middleware.AuditLogMiddleware',
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -163,3 +164,4 @@ SPECTACULAR_SETTINGS = {
 
 CRYPTOGRAPHY_KEY = 'your-secret-encryption-key-change-in-production'
 CRYPTOGRAPHY_SALT = 'your-salt-value'
+
