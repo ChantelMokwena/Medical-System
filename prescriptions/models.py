@@ -1,5 +1,4 @@
 from django.db import models
-
 from appointments.models import Appointment
 from doctors.models import Doctor
 from patients.models import Patient
