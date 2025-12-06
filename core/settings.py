@@ -161,6 +161,5 @@ SPECTACULAR_SETTINGS = {
     'SERVE_INCLUDE_SCHEMA': False,
 }
 
-# Encryption settings
 CRYPTOGRAPHY_KEY = 'your-secret-encryption-key-change-in-production'
 CRYPTOGRAPHY_SALT = 'your-salt-value'
