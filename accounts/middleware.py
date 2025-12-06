@@ -31,5 +31,4 @@ class AuditLogMiddleware:
                     model_name=request.path.split('/')[2] if len(request.path.split('/')) > 2 else 'unknown',
                     ip_address=get_client_ip(request)
                 )
-        
         return response
