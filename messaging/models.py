@@ -1,5 +1,4 @@
 from django.db import models
-from django_cryptography.fields import encrypt
 from django.db import models
 from accounts.models import User
 
@@ -20,7 +19,6 @@ class Conversation(models.Model):
 class Message(models.Model):
     conversation = models.ForeignKey(Conversation, on_delete=models.CASCADE, related_name='messages')
     sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='sent_messages')
-    content = encrypt(models.TextField())
     is_read = models.BooleanField(default=False)
     read_at = models.DateTimeField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
